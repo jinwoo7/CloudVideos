@@ -1,5 +1,6 @@
 package com.mycompany.jsfclasses;
 
+import com.mycompany.entityclasses.User;
 import com.mycompany.entityclasses.UserVideo;
 import com.mycompany.jsfclasses.util.JsfUtil;
 import com.mycompany.jsfclasses.util.JsfUtil.PersistAction;

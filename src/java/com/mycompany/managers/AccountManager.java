@@ -4,9 +4,11 @@
  */
 package com.mycompany.managers;
 
+import com.mycompany.entityclasses.PublicVideo;
 import com.mycompany.entityclasses.User;
-import com.mycompany.entityclasses.UserVideo;
+//import com.mycompany.entityclasses.UserVideo;
 import com.mycompany.entityclasses.UserPhoto;
+import com.mycompany.entityclasses.UserVideo;
 
 import com.mycompany.sessionbeans.UserFacade;
 import com.mycompany.sessionbeans.UserVideoFacade;
@@ -21,6 +23,7 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
@@ -99,6 +102,7 @@ public class AccountManager implements Serializable {
     private final String[] listOfStates = Constants.STATES;
     private Map<String, Object> security_questions;
     private String statusMessage;
+    private FacesMessage resultMsg;
 
     private User selected;
 
@@ -255,7 +259,7 @@ public class AccountManager implements Serializable {
         return userFacade;
     }
 
-    public UserVideoFacade getUserFileFacade() {
+    public UserVideoFacade getUserVideoFacade() {
         return userVideoFacade;
     }
 
@@ -331,7 +335,66 @@ public class AccountManager implements Serializable {
      */
     // Return True if a user is logged in; otherwise, return False
     public boolean isLoggedIn() {
+        System.out.println("HERE!!");
         return FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("username") != null;
+    }
+    
+    public boolean getTrue(){
+        return true;
+    }
+    
+    public String createNewVideo(PublicVideo pv) {
+        
+        // First, check if the user is logged in
+        if (isLoggedIn()!= true) {
+            // A user already exists with the username entered
+            System.out.println("NOT LOGGED IN!");
+            setSelected(null);
+            setStatusMessage("Cannot Share the Video since No User is Signed In!");
+            resultMsg = new FacesMessage(FacesMessage.SEVERITY_INFO,statusMessage, statusMessage);
+            FacesContext.getCurrentInstance().addMessage(null, resultMsg);
+            setStatusMessage("");
+            return "";
+        }
+        
+        System.out.println("LOGGED IN!");
+        System.out.println("STATUS MESSAGE: " + getStatusMessage());
+        if (getStatusMessage() == null || getStatusMessage().isEmpty()) {
+            try {
+                System.out.println("TRYING TO CREATE VIDEO!");
+                // Instantiate a new User object
+                UserVideo newVideo = new UserVideo();
+
+                /*
+                Set the properties of the newly created newUser object with the values
+                entered by the user in the AccountCreationForm in CreateAccount.xhtml
+                */
+                newVideo.setTitle(pv.getTitle());
+                newVideo.setDescription(pv.getDescription());
+                newVideo.setYoutubeVideoId(pv.getYoutubeVideoId());
+                newVideo.setDuration(pv.getDuration());
+                newVideo.setDatePublished(pv.getDatePublished());
+                newVideo.setCategory(pv.getCategory());
+                newVideo.setUserId(getSelected());
+                
+                getUserVideoFacade().create(newVideo);
+
+            } catch (EJBException e) {
+                System.out.println("FAILED ON VIDEO CREATION");
+                setStatusMessage("Something went wrong while adding Video" + e.getMessage());
+                resultMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR,statusMessage, statusMessage);
+                FacesContext.getCurrentInstance().addMessage(null, resultMsg);
+                setStatusMessage("");
+                
+                return "";
+            }
+            System.out.println("SUCCESSFULLY CREATED!!");
+            setStatusMessage("User Video was successfully created.");
+            resultMsg = new FacesMessage(FacesMessage.SEVERITY_INFO,statusMessage, statusMessage);            setStatusMessage("");
+            FacesContext.getCurrentInstance().addMessage(null, resultMsg);
+            setStatusMessage("");
+        }
+        return "";
     }
 
     /*
@@ -820,5 +883,13 @@ public class AccountManager implements Serializable {
             }
         }
     }
+    
+//    public String recordStatusMessage() {
+//        if (getStatusMessage() != "")
+//            FacesContext.getCurrentInstance().addMessage(null, resultMsg);
+//        
+//        setStatusMessage("");
+//        return "";
+//    }
 
 }

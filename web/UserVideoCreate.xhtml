@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateUserVideoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateUserVideoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{userVideoController.selected.id}" title="#{bundle.CreateUserVideoTitle_id}" required="true" requiredMessage="#{bundle.CreateUserVideoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateUserVideoLabel_title}" for="title" />
+                    <h:inputText id="title" value="#{userVideoController.selected.title}" title="#{bundle.CreateUserVideoTitle_title}" required="true" requiredMessage="#{bundle.CreateUserVideoRequiredMessage_title}"/>
+                    <h:outputLabel value="#{bundle.CreateUserVideoLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{userVideoController.selected.description}" title="#{bundle.CreateUserVideoTitle_description}" required="true" requiredMessage="#{bundle.CreateUserVideoRequiredMessage_description}"/>
+                    <h:outputLabel value="#{bundle.CreateUserVideoLabel_youtubeVideoId}" for="youtubeVideoId" />
+                    <h:inputText id="youtubeVideoId" value="#{userVideoController.selected.youtubeVideoId}" title="#{bundle.CreateUserVideoTitle_youtubeVideoId}" required="true" requiredMessage="#{bundle.CreateUserVideoRequiredMessage_youtubeVideoId}"/>
+                    <h:outputLabel value="#{bundle.CreateUserVideoLabel_duration}" for="duration" />
+                    <h:inputText id="duration" value="#{userVideoController.selected.duration}" title="#{bundle.CreateUserVideoTitle_duration}" required="true" requiredMessage="#{bundle.CreateUserVideoRequiredMessage_duration}"/>
+                    <h:outputLabel value="#{bundle.CreateUserVideoLabel_datePublished}" for="datePublished" />
+                    <h:inputText id="datePublished" value="#{userVideoController.selected.datePublished}" title="#{bundle.CreateUserVideoTitle_datePublished}" required="true" requiredMessage="#{bundle.CreateUserVideoRequiredMessage_datePublished}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateUserVideoLabel_category}" for="category" />
+                    <h:inputText id="category" value="#{userVideoController.selected.category}" title="#{bundle.CreateUserVideoTitle_category}" required="true" requiredMessage="#{bundle.CreateUserVideoRequiredMessage_category}"/>
+                    <h:outputLabel value="#{bundle.CreateUserVideoLabel_userId}" for="userId" />
+                    <h:selectOneMenu id="userId" value="#{userVideoController.selected.userId}" title="#{bundle.CreateUserVideoTitle_userId}" >
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{userVideoController.create}" value="#{bundle.CreateUserVideoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{userVideoController.prepareList}" value="#{bundle.CreateUserVideoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateUserVideoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

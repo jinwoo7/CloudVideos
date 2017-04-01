@@ -1,9 +1,11 @@
 package com.mycompany.jsfclasses;
 
 import com.mycompany.entityclasses.PublicVideo;
+import com.mycompany.entityclasses.UserVideo;
 import com.mycompany.jsfclasses.util.JsfUtil;
 import com.mycompany.jsfclasses.util.JsfUtil.PersistAction;
 import com.mycompany.sessionbeans.PublicVideoFacade;
+import com.mycompany.managers.AccountManager;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,6 +20,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
 @Named("publicVideoController")
 @SessionScoped
@@ -25,6 +29,7 @@ public class PublicVideoController implements Serializable {
 
     @EJB
     private com.mycompany.sessionbeans.PublicVideoFacade ejbFacade;
+    
     private List<PublicVideo> items = null;
     private PublicVideo selected;
 

@@ -8,12 +8,12 @@
 
     <ui:composition>
 
-        <p:dialog id="PublicVideoViewDlg" widgetVar="PublicVideoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPublicVideoTitle}">
+        <p:dialog id="PublicVideoViewDlg" widgetVar="PublicVideoViewDialog" 
+                  modal="true" resizable="false" appendTo="@(body)" 
+                  header="#{bundle.ViewPublicVideoTitle}">
             <h:form id="PublicVideoViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{publicVideoController.selected != null}">
-                        <h:outputText value="#{bundle.ViewPublicVideoLabel_id}"/>
-                        <h:outputText value="#{publicVideoController.selected.id}" title="#{bundle.ViewPublicVideoTitle_id}"/>
                         <h:outputText value="#{bundle.ViewPublicVideoLabel_title}"/>
                         <h:outputText value="#{publicVideoController.selected.title}" title="#{bundle.ViewPublicVideoTitle_title}"/>
                         <h:outputText value="#{bundle.ViewPublicVideoLabel_description}"/>
@@ -29,7 +29,15 @@
                         <h:outputText value="#{bundle.ViewPublicVideoLabel_category}"/>
                         <h:outputText value="#{publicVideoController.selected.category}" title="#{bundle.ViewPublicVideoTitle_category}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="PublicVideoViewDialog.hide()"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <p:spacer height="10"/>
+                    <div align="center">
+                        <!-- CLOSE button -->
+                        <p:commandButton value="#{bundle.Close}" onclick="PF('PublicVideoViewDialog').hide()" 
+                                         styleClass="commandButton" icon="ui-icon-close"/>
+                    </div>
+                    <p:spacer height="20"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

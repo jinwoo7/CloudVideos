@@ -31,24 +31,34 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "UserPhoto.findAll", query = "SELECT u FROM UserPhoto u")
     , @NamedQuery(name = "UserPhoto.findById", query = "SELECT u FROM UserPhoto u WHERE u.id = :id")
-    , @NamedQuery(name = "UserPhoto.findByExtension", query = "SELECT u FROM UserPhoto u WHERE u.extension = :extension")})
+    , @NamedQuery(name = "UserPhoto.findByExtension", query = "SELECT u FROM UserPhoto u WHERE u.extension = :extension")
+    , @NamedQuery(name = "UserPhoto.findPhotosByUserID", query = "SELECT p FROM UserPhoto p WHERE p.userId.id = :userId")})
 public class UserPhoto implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 5)
     @Column(name = "extension")
     private String extension;
+    
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
     private User userId;
 
+    /*
+    ====================================================================
+    Class constructors for instantiating a UserPhoto entity object to
+    represent a row in the UserPhoto table in the CloudDriveDB database.
+    ====================================================================
+     */
     public UserPhoto() {
     }
 
@@ -61,6 +71,18 @@ public class UserPhoto implements Serializable {
         this.extension = extension;
     }
 
+    // This method is added to the generated code
+    public UserPhoto(String fileExtension, User id) {
+        this.extension = fileExtension;
+        userId = id;
+    }
+    
+    /*
+    ======================================================
+    Getter and Setter methods for the attributes (columns)
+    of the UserPhoto table in the CloudDriveDB database.
+    ======================================================
+     */
     public Integer getId() {
         return id;
     }
@@ -105,9 +127,12 @@ public class UserPhoto implements Serializable {
         return true;
     }
 
+    /**
+     * @return the String representation of a UserPhoto id
+     */
     @Override
     public String toString() {
-        return "com.mycompany.entityclasses.UserPhoto[ id=" + id + " ]";
+        return id.toString();
     }
     
     /*

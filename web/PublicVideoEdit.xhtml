@@ -12,8 +12,6 @@
             <h:form id="PublicVideoEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{publicVideoController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditPublicVideoLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{publicVideoController.selected.id}" title="#{bundle.EditPublicVideoTitle_id}" required="true" requiredMessage="#{bundle.EditPublicVideoRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.EditPublicVideoLabel_title}" for="title" />
                         <p:inputText id="title" value="#{publicVideoController.selected.title}" title="#{bundle.EditPublicVideoTitle_title}" required="true" requiredMessage="#{bundle.EditPublicVideoRequiredMessage_title}"/>
                         <p:outputLabel value="#{bundle.EditPublicVideoLabel_description}" for="description" />
@@ -27,8 +25,20 @@
                         <p:outputLabel value="#{bundle.EditPublicVideoLabel_category}" for="category" />
                         <p:inputText id="category" value="#{publicVideoController.selected.category}" title="#{bundle.EditPublicVideoTitle_category}" required="true" requiredMessage="#{bundle.EditPublicVideoRequiredMessage_category}"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{publicVideoController.update}" value="#{bundle.Save}" update="display,:PublicVideoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PublicVideoEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="PublicVideoEditDialog.hide()"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <p:spacer height="10"/>
+                    <div align="center">
+                        <!-- SAVE button -->
+                        <p:commandButton actionListener="#{publicVideoController.update}" value="#{bundle.Save}" 
+                                         styleClass="commandButton" icon="ui-icon-disk" ajax="false"
+                                         update="display,:PublicVideoListForm:datalist,:growl" 
+                                         oncomplete="handleSubmit(args,'PublicVideoEditDialog');" />
+                        &nbsp;
+                        <!-- CANCEL button -->
+                        <p:commandButton value="#{bundle.Cancel}" onclick="PF('PublicVideoEditDialog').hide()" 
+                                         styleClass="commandButton" icon="ui-icon-cancel"/>
+                    </div>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
