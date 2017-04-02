@@ -31,7 +31,6 @@ Copyright © 2017 Jinwoo Yom. All rights reserved.
                 as an overlay. The life attribute defines how long the message will be displayed in 
                 milliseconds after which it will fade away. 4000 milliseconds = 4 seconds
                 -->
-                <!-- <h:outputLabel value="#{accountManager.recordStatusMessage()}"/> -->
                 <p:growl id="growl" life="4000" />
             
                 <h:form id="PublicVideoListForm">
@@ -157,14 +156,9 @@ Copyright © 2017 Jinwoo Yom. All rights reserved.
                                 <!-- **********************************************
                                 Display dialog for the Search button
                                 *********************************************** -->
-                                <p:commandButton id="searchButton" icon="ui-icon-search"  
-                                                 value="#{bundle.Search}" actionListener="#{publicVideoController.destroy}" 
-                                                 update=":growl,datalist">
-
-                                    <p:confirm header="Confirmation" 
-                                               message="Are you sure you want to permanently delete the selected recipe from the database?" 
-                                               icon="ui-icon-alert" />
-                                </p:commandButton>
+                                <p:commandButton id="searchButton" icon="ui-icon-search" value="#{bundle.Search}" 
+                                                 styleClass="commandButton" update=":VideoSearchForm" 
+                                                 oncomplete="PF('VideoSearchDialog').show()"/>
                                 <!-- **********************************************
                                 End of Display of the DELETE Confirmation dialog 
                                 *********************************************** -->    
@@ -178,6 +172,7 @@ Copyright © 2017 Jinwoo Yom. All rights reserved.
             <ui:include src="PublicVideoEdit.xhtml"/>
             <ui:include src="PublicVideoView.xhtml"/>
             <ui:include src="PublicVideoPlay.xhtml"/>
+            <ui:include src="PublicVideoSearch.xhtml"/>
         </ui:define>
     </ui:composition>
 

@@ -1,11 +1,10 @@
 package com.mycompany.jsfclasses;
 
 import com.mycompany.entityclasses.PublicVideo;
-import com.mycompany.entityclasses.UserVideo;
 import com.mycompany.jsfclasses.util.JsfUtil;
 import com.mycompany.jsfclasses.util.JsfUtil.PersistAction;
 import com.mycompany.sessionbeans.PublicVideoFacade;
-import com.mycompany.managers.AccountManager;
+import java.io.IOException;
 
 import java.io.Serializable;
 import java.util.List;
@@ -20,22 +19,43 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
+import javax.faces.event.ActionEvent;
 
+/**
+ *
+ * @author Jinwoo
+ */
 @Named("publicVideoController")
 @SessionScoped
 public class PublicVideoController implements Serializable {
-
+    
     @EJB
-    private com.mycompany.sessionbeans.PublicVideoFacade ejbFacade;
+    private com.mycompany.sessionbeans.PublicVideoFacade publicVideoFacade;
     
     private List<PublicVideo> items = null;
+    
+    private String searchString;
+    
+    private String searchLabel;
+    
+    private List<PublicVideo> searchedVideos = null;
+    
     private PublicVideo selected;
 
+    /*
+    -----------------------------------------------------
+    This is the constructor method invoked to instantiate
+    an object from the CompanyController class
+    -----------------------------------------------------
+     */
     public PublicVideoController() {
     }
 
+    /*
+    -------------------------
+    Getter and Setter Methods
+    -------------------------
+     */
     public PublicVideo getSelected() {
         return selected;
     }
@@ -44,16 +64,25 @@ public class PublicVideoController implements Serializable {
         this.selected = selected;
     }
 
+    private PublicVideoFacade getPublicVideoFacade() {
+        return publicVideoFacade;
+    }
+    /*
+    -----------------------
+    Embeddable Primary Keys
+    -----------------------
+     */
     protected void setEmbeddableKeys() {
     }
 
     protected void initializeEmbeddableKey() {
     }
 
-    private PublicVideoFacade getFacade() {
-        return ejbFacade;
-    }
-
+    /*
+    ----------------
+    Instance Methods
+    ----------------
+     */
     public PublicVideo prepareCreate() {
         selected = new PublicVideo();
         initializeEmbeddableKey();
@@ -81,7 +110,7 @@ public class PublicVideoController implements Serializable {
 
     public List<PublicVideo> getItems() {
         if (items == null) {
-            items = getFacade().findAll();
+            items = getPublicVideoFacade().findAll();
         }
         return items;
     }
@@ -91,9 +120,9 @@ public class PublicVideoController implements Serializable {
             setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {
-                    getFacade().edit(selected);
+                    getPublicVideoFacade().edit(selected);
                 } else {
-                    getFacade().remove(selected);
+                    getPublicVideoFacade().remove(selected);
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
@@ -115,15 +144,74 @@ public class PublicVideoController implements Serializable {
     }
 
     public PublicVideo getPublicVideo(java.lang.Integer id) {
-        return getFacade().find(id);
+        return getPublicVideoFacade().find(id);
     }
 
     public List<PublicVideo> getItemsAvailableSelectMany() {
-        return getFacade().findAll();
+        return getPublicVideoFacade().findAll();
     }
 
     public List<PublicVideo> getItemsAvailableSelectOne() {
-        return getFacade().findAll();
+        return getPublicVideoFacade().findAll();
+    }
+
+    public String getSearchString() {
+        return searchString;
+    }
+
+    public void setSearchString(String searchString) {
+        this.searchString = searchString;
+    }
+
+    public String getSearchLabel() {
+        return searchLabel;
+    }
+
+    public void setSearchLabel(String searchLabel) {
+        this.searchLabel = searchLabel;
+    }
+
+    public void setSearchedVideos(List<PublicVideo> searchedVideos) {
+        this.searchedVideos = searchedVideos;
+    }
+    /*
+    Return the list of object references of all those companies where 
+    the search string 'searchString' entered by the user is contained in the searchField.
+     */
+    public List<PublicVideo> getSearchedVideos() {
+        switch (searchLabel) {
+            case "title":
+                // Return the list of object references of all those companies where 
+                // company name contains the search string 'searchString' entered by the user.
+                searchedVideos = getPublicVideoFacade().titleQuery(searchString);
+                break;
+            case "description":
+                // Return the list of object references of all those companies where 
+                // city name contains the search string 'searchString' entered by the user.
+                searchedVideos = getPublicVideoFacade().descriptionQuery(searchString);
+                break;
+            case "category":
+                // Return the list of object references of all those companies where 
+                // State name contains the search string 'searchString' entered by the user.
+                searchedVideos = getPublicVideoFacade().categoryQuery(searchString);
+                break;
+            default:
+                // Return the list of object references of all those companies where company name, city name, 
+                // state name, or country name contains the search string 'searchString' entered by the user.
+                searchedVideos = getPublicVideoFacade().allQuery(searchString);
+                break;
+        }
+        return searchedVideos;
+    }
+    
+    /**
+     * @SessionScoped enables to preserve the values of the instance variables for the SearchResults.xhtml page to access.
+     *
+     * @param actionEvent refers to clicking the Submit button
+     * @throws IOException if the page to be redirected to cannot be found
+     */
+    public void search(ActionEvent actionEvent) throws IOException {
+        FacesContext.getCurrentInstance().getExternalContext().redirect("SearchResults.xhtml");
     }
 
     @FacesConverter(forClass = PublicVideo.class)

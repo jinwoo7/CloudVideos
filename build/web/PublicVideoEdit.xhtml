@@ -13,9 +13,11 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{publicVideoController.selected != null}">
                         <p:outputLabel value="#{bundle.EditPublicVideoLabel_title}" for="title" />
-                        <p:inputText id="title" value="#{publicVideoController.selected.title}" title="#{bundle.EditPublicVideoTitle_title}" required="true" requiredMessage="#{bundle.EditPublicVideoRequiredMessage_title}"/>
+                        <p:inputText id="title" value="#{publicVideoController.selected.title}" style="width: 500px;"
+                                     title="#{bundle.EditPublicVideoTitle_title}" required="true" requiredMessage="#{bundle.EditPublicVideoRequiredMessage_title}"/>
                         <p:outputLabel value="#{bundle.EditPublicVideoLabel_description}" for="description" />
-                        <p:inputText id="description" value="#{publicVideoController.selected.description}" title="#{bundle.EditPublicVideoTitle_description}" required="true" requiredMessage="#{bundle.EditPublicVideoRequiredMessage_description}"/>
+                        <p:inputText id="description" value="#{publicVideoController.selected.description}" style="width: 500px;"
+                                     title="#{bundle.EditPublicVideoTitle_description}" required="true" requiredMessage="#{bundle.EditPublicVideoRequiredMessage_description}"/>
                         <p:outputLabel value="#{bundle.EditPublicVideoLabel_youtubeVideoId}" for="youtubeVideoId" />
                         <p:inputText id="youtubeVideoId" value="#{publicVideoController.selected.youtubeVideoId}" title="#{bundle.EditPublicVideoTitle_youtubeVideoId}" required="true" requiredMessage="#{bundle.EditPublicVideoRequiredMessage_youtubeVideoId}"/>
                         <p:outputLabel value="#{bundle.EditPublicVideoLabel_duration}" for="duration" />

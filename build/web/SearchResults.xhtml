@@ -35,7 +35,7 @@ Copyright © 2017 Jinwoo Yom. All rights reserved.
             
                 <h:form id="PublicVideoListForm">
                     <p:panel header="#{bundle.ListPublicVideoTitle}">
-                        <p:dataTable id="datalist" value="#{publicVideoController.items}" var="item"
+                        <p:dataTable id="datalist" value="#{publicVideoController.searchedVideos}" var="item"
                                      selectionMode="single" selection="#{publicVideoController.selected}"
                                      paginator="true"
                                      rowKey="#{item.id}"

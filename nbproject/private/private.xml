@@ -5,12 +5,13 @@
         <group>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/template/headerTemplate.xhtml</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/src/java/com/mycompany/managers/PhotoFileManager.java</file>
+            <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/SecurityQuestion.xhtml</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/src/java/com/mycompany/jsfclasses/UserController.java</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/PublicVideoPlay.xhtml</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/UserVideoView.xhtml</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/PublicVideoCreate.xhtml</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/src/java/com/mycompany/entityclasses/PublicVideo.java</file>
+            <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/PublicVideoCreate.xhtml</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/src/java/com/mycompany/jsfclasses/PublicVideoController.java</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/nbproject/build-impl.xml</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/src/java/com/mycompany/sessionbeans/UserVideoFacade.java</file>
@@ -18,19 +19,23 @@
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/PublicVideoView.xhtml</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/src/java/com/mycompany/entityclasses/UserVideo.java</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/src/java/com/mycompany/jsfclasses/UserVideoController.java</file>
+            <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/UserVideoEdit.xhtml</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/CreateAccount.xhtml</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/src/java/com/mycompany/managers/Constants.java</file>
+            <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/PublicVideoSearch.xhtml</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/src/java/com/mycompany/entityclasses/User.java</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/ResetPassword.xhtml</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/ChangePhoto.xhtml</file>
-            <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/PublicVideoEdit.xhtml</file>
+            <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/UserVideoList.xhtml</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/index.xhtml</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/template/siteTemplate.xhtml</file>
+            <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/PublicVideoEdit.xhtml</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/SignIn.xhtml</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/src/java/com/mycompany/managers/LoginManager.java</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/Profile.xhtml</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/src/java/Bundle.properties</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/src/java/com/mycompany/entityclasses/UserPhoto.java</file>
+            <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/src/java/com/mycompany/managers/PasswordResetManager.java</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/web/DeleteAccountDialog.xhtml</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/src/java/com/mycompany/sessionbeans/PublicVideoFacade.java</file>
             <file>file:/C:/Users/Jinwoo%20Yom/Documents/NetBeansProjects/Videos-Yom/src/java/com/mycompany/managers/AccountManager.java</file>
